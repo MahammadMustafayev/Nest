@@ -1,0 +1,179 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+@section styles{
+    <style>
+        .product-img .default-img, .product-img .hover-img {
+            width: 190px;
+            height: 190px;
+        }
+    </style>
+}
+<div class="page-header mt-30 mb-50">
+                <div class="container">
+                    <div class="archive-header">
+                        <div class="row align-items-center">
+                            <div class="col-xl-3">
+                                <h1 class="mb-15">Snack</h1>
+                                <div class="breadcrumb">
+                                    <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                                    <span></span> Shop <span></span> Snack
+                                </div>
+                            </div>
+                            <div class="col-xl-9 text-end d-none d-xl-block">
+                                <ul class="tags-list">
+                                    <li class="hover-up">
+                                        <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Cabbage</a>
+                                    </li>
+                                    <li class="hover-up active">
+                                        <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Broccoli</a>
+                                    </li>
+                                    <li class="hover-up">
+                                        <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Artichoke</a>
+                                    </li>
+                                    <li class="hover-up">
+                                        <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Celery</a>
+                                    </li>
+                                    <li class="hover-up mr-0">
+                                        <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Spinach</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mb-30">
+                <div class="row flex-row-reverse">
+                    <div class="col-lg-4-5">
+                        <div class="shop-product-fillter">
+                            <div class="totall-product">
+                                <p>We found <strong class="text-brand">29</strong> items for you!</p>
+                            </div>
+                            <div class="sort-by-product-area">
+                                <div class="sort-by-cover mr-10">
+                                    <div class="sort-by-product-wrap">
+                                        <div class="sort-by">
+                                            <span><i class="fi-rs-apps"></i>Show:</span>
+                                        </div>
+                                        <div class="sort-by-dropdown-wrap">
+                                            <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="sort-by-dropdown">
+                                        <ul>
+                                            <li><a class="active" href="#">50</a></li>
+                                            <li><a href="#">100</a></li>
+                                            <li><a href="#">150</a></li>
+                                            <li><a href="#">200</a></li>
+                                            <li><a href="#">All</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="sort-by-cover">
+                                    <div class="sort-by-product-wrap">
+                                        <div class="sort-by">
+                                            <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
+                                        </div>
+                                        <div class="sort-by-dropdown-wrap">
+                                            <span> Featured <i class="fi-rs-angle-small-down"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="sort-by-dropdown">
+                                        <ul>
+                                            <li><a class="active" href="#">Featured</a></li>
+                                            <li><a href="#">Price: Low to High</a></li>
+                                            <li><a href="#">Price: High to Low</a></li>
+                                            <li><a href="#">Release Date</a></li>
+                                            <li><a href="#">Avg. Rating</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row product-grid">
+                            @await Component.InvokeAsync("Product",new {page=(ViewBag.Page==null?1:ViewBag.Page)})
+                             @*<partial name="_ProductPartial"  />*@
+                            
+
+                            <!--end product card-->
+                        </div>
+                        @*<input type="hidden" value="@ViewBag.ProductCount" id="proCount" />
+                        <div class="d-flex justify-content-center mb-30">
+                            <button class="btn btn-brand" id="btnLoadMore" >Load More</button>
+                        </div>*@
+
+                        <!--product grid-->
+                        @*<div class="pagination-area mt-20 mb-20">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-start">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link dot" href="#">...</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>*@
+                        
+                        <!--End Deals-->
+                    </div>
+                    <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
+                        <div class="sidebar-widget widget-category-2 mb-30">
+                            <h5 class="section-title style-1 mb-30">Category</h5>
+                            <ul>
+                                @foreach (Category category in ViewBag.Categories)
+                                {
+                                    <li class="categoryFilter" data-id="@category.Id">
+                                      <a> <img src="~/assets/imgs/category/@category.Logo" alt="" />@category.Name</a><span class="count">@category.Products.Count</span>
+                                   </li>
+                                }
+                                
+                            </ul>
+                        </div>
+                        <!-- Fillter By Price --> 
+                    </div>
+                </div>
+            </div>
+@section scripts{
+    <script>
+
+        $("#btnLoadMore").click(function () {
+            let skip = $(".product-grid").children().length;
+            let prodCount = $("#proCount").val();
+            $.ajax({
+                url:"/Product/LoadMore",
+                method:'GET',
+                data:{
+                    skip:skip
+                },
+                success: function (res) {
+                    $(".product-grid").append(res);
+                    if ($(".product-grid").children().length >= prodCount) {
+                        $("#btnLoadMore").remove();
+                    }
+                }
+            })
+        })
+        $(".categoryFilter").click(function(){
+            const id =$(this).attr("data-id");
+            $.ajax({
+                url: "/Product/CategoryFilter",
+                method:'GET',
+                data:{
+                    CategoryId:id
+                },
+                success:function(res){
+                    $(".product-grid").html(res);
+                }
+            })
+        })
+    </script>
+}

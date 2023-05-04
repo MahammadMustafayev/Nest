@@ -1,0 +1,69 @@
+﻿@model PaginateVM<Product>
+@foreach (var product in Model.Items)
+{
+    <div class="col">
+        <div class="card card-product-grid">
+            <a href="#" class="img-wrap"> <img width="300" height="250" src="~/assets/imgs/shop/@product.ProductImages.FirstOrDefault(pi=>pi.IsFront==true).Image" alt="Product" /> </a>
+            <div class="info-wrap">
+                <a href="#" class="title text-truncate">@product.Name</a>
+                <span class="me-2 text-success">@product.Category</span>
+                <i class="icon material-icons @(product.IsDeleted?"text-danger md-cancel":"text-success md-check_circle")"></i>
+                <div class="price mb-2">₼@product.Price</div>
+                <div class="price mb-2">@product.StockCount</div>
+                <!-- price.// -->
+                <a href="#" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Edit </a>
+                <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-sm font-sm btn-danger rounded"> <i class="material-icons md-delete_forever"></i> Delete </a>
+                <a asp-action="PermaDelete" asp-route-id="@product.Id" class="btn btn-sm font-sm btn-danger rounded"> <i class="material-icons md-delete_forever"></i> Perma-Delete </a>
+            </div>
+        </div>
+        <!-- card-product  end// -->
+    </div>
+    <!-- col.// -->
+}
+@if (Model.PageCount != 0)
+{
+       @* <div class="pagination-area mt-20 mb-20">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-start">
+                @if (Model.ActivePage != 1)
+                {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-page="@(Model.ActivePage-1)" ><i class="fi-rs-arrow-small-left"></i></a>
+                            </li>
+                }
+
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                           <li class="page-item @(Model.ActivePage==i?"active":" ")"><a class="page-link" asp-controller="Product" asp-action="Index" asp-route-page="@i" >@i</a></li>
+                }
+
+                @if (Model.ActivePage != Model.PageCount)
+                {
+                            <li class="page-item">
+                              <a class="page-link" asp-controller="Product" asp-action="Index" asp-route-page="@(Model.ActivePage+1)"><i class="fi-rs-arrow-small-right"></i></a>
+                            </li>
+                }
+            </ul>
+            </nav>
+        </div>*@
+     <div class="pagination-area mt-130">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-start">
+                @if (Model.ActivePage != 1)
+                {
+                    <li class="page-item "><a class="page-link" asp-controller="Product" asp-action="Index" asp-route-page="@(Model.ActivePage-1)"><i class="material-icons md-chevron_left"></i></a></li>
+                }
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <li class="page-item @(Model.ActivePage==i?"active":" ") "><a class="page-link" asp-controller="Product" asp-action="Index" asp-route-page="@i">@i</a></li>
+                }
+                @if (Model.ActivePage != Model.PageCount)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(Model.ActivePage+1)"><i class="material-icons md-chevron_right"></i></a>
+                    </li>
+                }
+                </ul>
+            </nav>
+        </div>
+}
