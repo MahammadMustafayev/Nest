@@ -124,7 +124,7 @@
                                         <td>@category.Id</td>
                                         <td><b>@category.Name</b></td>
 
-                                        <td><img width="100" height="50" src="~/assets/imgs/category/@category.Logo" /></td>
+                                        <td><img width="100" height="50" src="@category.Logo" /></td>
                                         <td>@category.Products.Count</td>
                                         <td>@(category.isDeleted == true ? "Silinib":"Aktifdir")</td>
                                         <td class="text-end">

@@ -132,7 +132,7 @@
                                 @foreach (Category category in ViewBag.Categories)
                                 {
                                     <li class="categoryFilter" data-id="@category.Id">
-                                      <a> <img src="~/assets/imgs/category/@category.Logo" alt="" />@category.Name</a><span class="count">@category.Products.Count</span>
+                                      <a> <img src="@category.Logo" alt="" />@category.Name</a><span class="count">@category.Products.Count</span>
                                    </li>
                                 }
                                 

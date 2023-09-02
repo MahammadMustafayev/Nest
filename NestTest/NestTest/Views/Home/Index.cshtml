@@ -55,7 +55,7 @@
                 @foreach(Category imagecategory in Model.Categories){
                     <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                                 <figure class="img-hover-scale overflow-hidden">
-                                    <a href="#"><img src="~/assets/imgs/category/@imagecategory.Logo" alt="" /></a>
+                                    <a href="#"><img src="@imagecategory.Logo" alt="" /></a>
                                 </figure>
                                 <h6><a href="#">@imagecategory.Name</a></h6>
                                 <span>@imagecategory.Products.Count items</span>
